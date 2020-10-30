@@ -15,6 +15,13 @@ class BankAccount:
         amount = amount
         self.balance = self.balance - amount
         print(f"Amount Withdrawn: ${amount}")
+
     def get_balance(self):
         print(f"Your current balance: ${self.balance}")
         return self.balance
+
+    def print_receipt(self):
+        print(self.name)
+        print(f"Account No.: {self._BankAccount__account}")
+        print(f"Routing No.: {self._BankAccount__routing}")
+        print(f"Balance: ${self.balance}")
