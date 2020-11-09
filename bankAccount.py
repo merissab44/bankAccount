@@ -1,3 +1,4 @@
+import re
 class BankAccount:
     balance = 0
     def __init__(self, full_name, account_number, routing_number, balance):
@@ -5,8 +6,6 @@ class BankAccount:
         self.__account = account_number
         self.__routing = routing_number
         self.balance = balance
-        s = account_number[-4:].rjust(len(account_number), '*')
-        print(s)
 
     def deposit(self, amount):
         self.balance += amount + self.balance
@@ -25,11 +24,12 @@ class BankAccount:
 
     def print_receipt(self):
         print(self.name)
-        print(f"Account No.:  {str.replace(str(self._BankAccount__account[:-4]), "X")}" + f"{str(self._BankAccount__account)[-4:]}")
+        account = re.sub("\d","x",str(self._BankAccount__account), 4)
+        print(f"Account No.: {account}")
         print(f"Routing No.: {self._BankAccount__routing}")
         print(f"Balance: ${self.balance}")
 
-merissa = BankAccount('Merissa Bridgeman', '193039494', '43940303939', 0)
+merissa = BankAccount('Merissa Bridgeman', 19339494, 43940303939, 0)
 """menu option at beginning so user can choose which poem to see"""
 while True:
     choice = input(""" Please enter from the options below:
