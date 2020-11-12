@@ -1,14 +1,23 @@
 import re
+from random import random
+from random import randint
+from random import sample
 class BankAccount:
     # set the initial balance of the account to 0
     balance = 0
     # these are attributes that every bank account share in common
-    def __init__(self, full_name, account_number, routing_number, balance):
+    def __init__(self, full_name, routing_number, balance):
         self.name = full_name
-        self.__account = account_number
         self.__routing = routing_number
         self.balance = balance
+        self.account_number = self.set_account()
 # these are the start of the methods, first one depsits money to your account balance
+    def set_account(self):
+        eight_num = sample(range(10), 8)
+        account = ''
+        for num in eight_num:
+            account += str(num)
+        return account
     def deposit(self, amount):
         self.balance += amount
         print(f"Amount Deposited: ${amount}")
@@ -32,14 +41,15 @@ class BankAccount:
         balance = self.balance
         print(self.name)
         # from w3schools this looks for digits in this string and replaces the first 4 with an asterisk
-        account = re.sub("\d","*",str(self._BankAccount__account), 4)
-        print(f"Account No.: {account}")
+        censored_num = re.sub("\d", "*", self.account_number,4)
+        print(f"Account No.: {censored_num}")
         print(f"Routing No.: {self._BankAccount__routing}")
         print(f"Balance: ${balance}")
 # initiated 3 new bank account objects
-merissa = BankAccount('Merissa Bridgeman', 19339494, 43940303939, 600)
-audrey = BankAccount('Audrey Byrne', 38492049, 498493947,400)
-wendy = BankAccount('Wendy Chambers', 48393028, 374803483, 1800)
+merissa = BankAccount('Merissa Bridgeman', 43940303939, 0)
+print(merissa.account_number)
+audrey = BankAccount('Audrey Byrne', 43940303939,0)
+wendy = BankAccount('Wendy Chambers', 43940303939, 0)
 """menu option at beginning to give user atm feel"""
     #takes input of person
 person = input("Please enter first name: ")
